@@ -30,4 +30,24 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> findAllEmployees(Sort sort) {
         return repository.findAllEmployees(sort);
     }
+
+    @Override
+    public List<Employee> findEmployeeByStatus(Integer status) {
+        return repository.findEmployeeByStatus(status);
+    }
+
+    @Override
+    public List<Employee> findEmployeeByStatusAndFirstName(Integer status, String firstName) {
+        return repository.findEmployeeByStatusAndFirstName(status,firstName);
+    }
+
+    @Override
+    public List<Employee> findEmployeeByFirstNameList(Collection<String> names) {
+        return repository.findEmployeeByFirstNameList(names);
+    }
+
+    @Override
+    public int updateEmployeeSetStatusName(Integer status, String name) {
+        return repository.updateEmployeeSetStatusName(status, name);
+    }
 }
