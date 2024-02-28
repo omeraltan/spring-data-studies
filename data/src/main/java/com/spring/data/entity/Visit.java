@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name = "t_visit")
 public class Visit extends BaseEntity{
     @Column(name = "visit_date")
     @Temporal(TemporalType.TIMESTAMP)

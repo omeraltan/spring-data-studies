@@ -3,6 +3,8 @@ package com.spring.data.entity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_owner")
@@ -30,6 +32,7 @@ public class Owner {
         public void setLastName(String lastName) {
             this.lastName = lastName;
         }
+
     }
 
     @Id

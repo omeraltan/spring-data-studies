@@ -3,7 +3,7 @@ package com.spring.data.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
-
+@SecondaryTable(name = "t_address",pkJoinColumns = @PrimaryKeyJoinColumn(name = "product_id")) // adres tablosundaki product ismi product_id
 @Entity
 public class Product extends BaseEntity{
     private String name;
