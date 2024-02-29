@@ -17,6 +17,9 @@ public class Pet_Owner extends BaseEntity{
     @OneToMany(mappedBy = "pet_owner")
     //@JoinColumn(name = "owner_id")
     private Set<Pet> pets = new HashSet<>();
+    @ElementCollection
+    @CollectionTable(name = "t_pet_owner_emails", joinColumns = @JoinColumn(name = "pet_owner_id"))
+    private Set<Email> emails = new HashSet<>();
 
     public Rating getRating() {
         return rating;
