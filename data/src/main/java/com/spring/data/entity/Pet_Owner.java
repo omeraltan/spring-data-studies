@@ -14,8 +14,8 @@ public class Pet_Owner extends BaseEntity{
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @OneToMany
-    @JoinColumn(name = "pet_owner_id")
+    @OneToMany(mappedBy = "pet_owner")
+    //@JoinColumn(name = "owner_id")
     private Set<Pet> pets = new HashSet<>();
 
     public Rating getRating() {
