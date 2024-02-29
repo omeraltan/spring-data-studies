@@ -1,8 +1,6 @@
 package com.spring.data.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "t_image")
@@ -13,4 +11,10 @@ public class Image extends BaseEntity{
     private int height;
     @Column(name = "width")
     private int width;
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
+
+    @OneToOne(mappedBy = "image")
+    private ImageContent imageContent;
 }

@@ -1,11 +1,11 @@
 package com.spring.data.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
+
 
 @Entity
 @Table(name = "t_pet")
@@ -14,7 +14,7 @@ public class Pet extends BaseEntity{
     private String name;
     private Date birthdate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id")
     private PetType petType;
 
@@ -22,10 +22,16 @@ public class Pet extends BaseEntity{
     @JoinColumn(name = "owner_id")
     private Pet_Owner pet_owner;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "pet_id")
     @OrderColumn(name = "visit_order")
     private List<Visit> visits = new ArrayList<>();
+
+    @OneToMany(mappedBy = "pet")
+    @MapKey(name = "filePath")
+    //@JoinColumn(name = "pet_id")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    private Map<String, Image> imagesByFilePath = new HashMap<>();
 
     public Pet() {
     }

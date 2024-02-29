@@ -1,0 +1,6 @@
+
+OneToMany  = lazy (default)
+ManyToMany = lazy (default)
+
+OneToOne   = eager (default)
+ManyToOne  = eager (default)
