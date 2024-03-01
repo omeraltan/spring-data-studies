@@ -10,6 +10,20 @@
       <property name="connection.password"></property>
       <property name="hibernate.show_sql">true</property>
       <mapping class="com.spring.data.entity.Pet"/>
+      <mapping class="com.spring.data.entity.Pet_Owner"/>
+      <mapping class="com.spring.data.entity.Owner"/>
+      <mapping class="com.spring.data.entity.Address"/>
+      <mapping class="com.spring.data.entity.Image"/>
+      <mapping class="com.spring.data.entity.ImageContent"/>
+      <mapping class="com.spring.data.entity.Product"/>
+      <mapping class="com.spring.data.entity.City"/>
+      <mapping class="com.spring.data.entity.Employee"/>
+      <mapping class="com.spring.data.entity.Address"/>
+      <mapping class="com.spring.data.entity.Vet"/>
+      <mapping class="com.spring.data.entity.Visit"/>
+      <mapping class="com.spring.data.entity.Speciality"/>
+      <mapping class="com.spring.data.entity.PetType"/>
+
 
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
