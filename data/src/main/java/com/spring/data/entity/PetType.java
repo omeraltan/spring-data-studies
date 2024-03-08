@@ -4,8 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "t_pettype")
-public class PetType extends BaseEntity{
+@Table(name="t_pet_type")
+public class PetType extends BaseEntity {
     private String name;
 
     public String getName() {
@@ -15,4 +15,6 @@ public class PetType extends BaseEntity{
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

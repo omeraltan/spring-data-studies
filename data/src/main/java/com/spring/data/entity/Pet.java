@@ -8,37 +8,60 @@ import java.util.*;
 
 
 @Entity
-@Table(name = "t_pet")
-public class Pet extends BaseEntity{
+@Table(name="t_pet")
+@SequenceGenerator(name="seqGen",sequenceName="pet_seq")
+public class Pet extends BaseEntity {
 
+    @Basic(optional=false)
+    @Column(name="pet_name",nullable=false)
     private String name;
-    private Date birthdate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type_id")
-    private PetType petType;
+    @Column(name="birth_date")
+    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="type_id")
+    private PetType type;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Pet_Owner pet_owner;
+    @JoinColumn(name="owner_id")
+    private Owner owner;
 
-    @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "pet_id")
-    @OrderColumn(name = "visit_order")
+    @OneToMany(orphanRemoval=true,fetch=FetchType.LAZY)
+    @JoinColumn(name="pet_id")
+    @OrderColumn(name="visit_order")
     private List<Visit> visits = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pet")
-    @MapKey(name = "filePath")
-    //@JoinColumn(name = "pet_id")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+    @OneToMany(mappedBy="pet")
+    @MapKey(name="filePath")
     private Map<String, Image> imagesByFilePath = new HashMap<>();
 
     public Pet() {
+
     }
 
-    public Pet(String name, Date birthdate) {
+    public Pet(String name, Date birthDate) {
         this.name = name;
-        this.birthdate = birthdate;
+        this.birthDate = birthDate;
+    }
+
+
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public PetType getType() {
+        return type;
+    }
+
+    public void setType(PetType type) {
+        this.type = type;
     }
 
     public String getName() {
@@ -49,36 +72,36 @@ public class Pet extends BaseEntity{
         this.name = name;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+
+
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
-    public PetType getPetType() {
-        return petType;
+
+
+    public List<Visit> getVisits() {
+        return visits;
     }
 
-    public void setPetType(PetType petType) {
-        this.petType = petType;
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 
-    public Pet_Owner getOwner() {
-        return pet_owner;
+    public Map<String, Image> getImagesByFilePath() {
+        return imagesByFilePath;
     }
 
-    public void setOwner(Pet_Owner owner) {
-        this.pet_owner = owner;
+    public void setImagesByFilePath(Map<String, Image> imagesByFilePath) {
+        this.imagesByFilePath = imagesByFilePath;
     }
 
     @Override
     public String toString() {
-        return "Pet{" +
-            "name='" + name + '\'' +
-            ", birthdate=" + birthdate +
-            ", petType=" + petType +
-            '}';
+        return "Pet [id=" + getId() + ", name=" + name + ", birthDate=" + birthDate + "]";
     }
 }

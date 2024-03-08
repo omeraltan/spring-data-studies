@@ -6,11 +6,11 @@ import org.hibernate.annotations.Parent;
 
 @Embeddable
 public class Email {
-    @Column(name = "email")
+    @Column(name="email")
     private String email;
 
     @Parent
-    private Pet_Owner pet_owner;
+    private Person person;
 
     public String getEmail() {
         return email;
@@ -20,11 +20,13 @@ public class Email {
         this.email = email;
     }
 
-    public Pet_Owner getPet_owner() {
-        return pet_owner;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPet_owner(Pet_Owner pet_owner) {
-        this.pet_owner = pet_owner;
+    public void setPerson(Person person) {
+        this.person = person;
     }
+
+
 }

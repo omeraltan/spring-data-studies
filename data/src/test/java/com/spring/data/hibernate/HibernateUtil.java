@@ -1,4 +1,4 @@
-package com.spring.data.hibernate;
+package hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -8,10 +8,12 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-            return new Configuration().configure().buildSessionFactory();
-        }catch (Throwable ex){
-            System.err.println("SessionFactory oluşturulamadı." + ex);
-            throw new ExceptionInInitializerError(ex);
+            Configuration cfg = new Configuration();
+            SessionFactory sessionFactory = cfg.configure("hibernate.cfg.xml").buildSessionFactory();
+            return sessionFactory;
+        }catch (Exception e){
+            System.out.println("Session factory oluşturulurken hata oluştu" + e);
+            throw new ExceptionInInitializerError(e);
         }
     }
 
@@ -19,8 +21,5 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-    public static void shutdown(){
-        getSessionFactory().close();
-    }
 
 }

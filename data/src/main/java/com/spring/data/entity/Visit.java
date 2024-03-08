@@ -5,16 +5,19 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "t_visit")
-public class Visit extends BaseEntity{
-    @Column(name = "visit_date")
+@Table(name="t_visit")
+public class Visit extends BaseEntity {
+
+    @Column(name="visit_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date visitDate;
+
     @Lob
+    @Column(name="visit_description")
     private String visitDescription;
 
     @ManyToOne
-    @JoinColumn(name = "pet_id", insertable = false, updatable = false)
+    @JoinColumn(name="pet_id",insertable=false,updatable=false)
     private Pet pet;
 
     public Date getVisitDate() {

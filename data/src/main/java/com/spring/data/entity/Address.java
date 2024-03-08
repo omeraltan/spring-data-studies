@@ -6,40 +6,29 @@ import org.hibernate.annotations.Cascade;
 @Embeddable
 public class Address {
 
-    @Column(table = "t_address")
+    @Column(table="t_address",name="phone_type")
+    @Enumerated(EnumType.STRING)
+    private PhoneType phoneType;
+
+    @Column(table="t_address")
     private String street;
-    @Column(table = "t_address")
+
+    @Column(table="t_address")
     private String phone;
+
     @ManyToOne
-    @JoinColumn(name = "city_id", table = "t_address", foreignKey = @ForeignKey(name = "fk_address_city"))
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JoinColumn(name="city_id",table="t_address",foreignKey=@ForeignKey(name="fk_address_city"))
     private City city;
-
-    public Address() {
-    }
-
-    public Address(String street, String phone) {
-        this.street = street;
-        this.phone = phone;
-    }
-
-    public Address(String street, String phone, City city) {
-        this(street, phone);
-        this.city = city;
-    }
 
     public String getStreet() {
         return street;
     }
-
     public void setStreet(String street) {
         this.street = street;
     }
-
     public String getPhone() {
         return phone;
     }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }

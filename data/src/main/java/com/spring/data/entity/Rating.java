@@ -1,11 +1,12 @@
 package com.spring.data.entity;
 
 public enum Rating {
-    STANDART(100), PREMIUM(200);
+    STANDART(100),PREMIUM(200);
+
 
     private int value;
 
-    Rating(int value) {
+    private Rating(int value) {
         this.value = value;
     }
 

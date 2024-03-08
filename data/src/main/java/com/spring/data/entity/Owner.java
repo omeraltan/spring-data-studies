@@ -1,48 +1,54 @@
 package com.spring.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+
+@TypeDef(name="ratingType",typeClass=RatingUserType.class)
+@SecondaryTable(name="t_address",pkJoinColumns=@PrimaryKeyJoinColumn(name="owner_id"))
 @Entity
-@Table(name = "t_owner")
-public class Owner {
-    @Embeddable
-    public static class OwnerId implements Serializable{
-        @Column(name = "first_name", nullable = false)
-        private String firstName;
+@Table(name="t_owner")
+public class Owner extends Person {
 
-        @Column(name = "last_name", nullable = false)
-        private String lastName;
+    //@Type(type="ratingType")
+    //@Convert(converter=RatingAttributeConverter.class)
+    //@Enumerated(EnumType.ORDINAL)
+    private Rating rating;
 
-        public String getFirstName() {
-            return firstName;
-        }
+    @OneToMany(mappedBy="owner")
+    private Set<Pet> pets = new HashSet<>();
 
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
+    @Embedded
+    private Address address;
 
-        public String getLastName() {
-            return lastName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-
+    public Set<Pet> getPets() {
+        return pets;
     }
 
-    @Id
-    private OwnerId id;
-
-    public OwnerId getId() {
-        return id;
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
     }
 
-    public void setId(OwnerId id) {
-        this.id = id;
+    public Address getAddress() {
+        return address;
     }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+
 }

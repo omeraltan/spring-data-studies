@@ -3,7 +3,7 @@ package com.spring.data.entity;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
-@Converter(autoApply = true)
+@Converter(autoApply = false)
 public class RatingAttributeConverter implements AttributeConverter<Rating, Integer> {
     @Override
     public Integer convertToDatabaseColumn(Rating attribute) {

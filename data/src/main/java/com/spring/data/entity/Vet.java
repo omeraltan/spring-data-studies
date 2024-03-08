@@ -7,19 +7,19 @@ import java.util.Set;
 
 @Entity
 @Table(name = "t_vet")
-public class Vet extends BaseEntity{
-    @Column(name = "name", nullable = false)
-    private String name;
+public class Vet extends Person {
+    @Column(name = "works_full_time")
+    private Boolean worksFullTime;
 
     @ManyToMany
-    @JoinTable(name = "t_vet_speciality", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "speciality_id"))
-    private Set<Speciality> specialities = new HashSet<>();
+    @JoinTable(name = "t_vet_specialty", joinColumns = @JoinColumn(name = "vet_id"), inverseJoinColumns = @JoinColumn(name = "specialty_id"))
+    private Set<Specialty> specialties = new HashSet<>();
 
-    public String getName() {
-        return name;
+    public Boolean getWorksFullTime() {
+        return worksFullTime;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWorksFullTime(Boolean worksFullTime) {
+        this.worksFullTime = worksFullTime;
     }
 }
